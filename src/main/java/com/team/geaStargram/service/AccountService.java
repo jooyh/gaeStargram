@@ -7,11 +7,14 @@ import com.team.geaStargram.exception.OverCountException;
 import com.team.geaStargram.status.AccountStatus;
 import com.team.geaStargram.vo.Account;
 import org.apache.commons.io.FileUtils;
+import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Random;
 
 @Service
@@ -20,7 +23,12 @@ public class AccountService {
     @Inject
     private AccountDao accountDao;
 
+    @Inject
+    private MailService mailService;
+
     private static final int TRY_LOGIN_MAX_COUNT = 5;
+
+    FileUploadService fileUploadService = new FileUploadService();
 
     public AccountStatus login(String email, String pw) {
 
@@ -61,7 +69,8 @@ public class AccountService {
             isExistDataInObject(account);
             accountDao.Insert(account);
             // 사진 저장
-            account.setSumnailImgPath(getFilePath(profileImg, account.getEmail()));
+
+            account.setSumnailImgPath(fileUploadService.getFilePath(profileImg, account.getEmail()));
 
             // 메일발송
             sendMail("인증메일 입니다.", authCodeMake().toString(), account.getEmail());
@@ -75,6 +84,9 @@ public class AccountService {
         } catch (IOException e) {
             //사진 등록 불가
             return AccountStatus.UPLOAD_FAIL;
+        } catch (URISyntaxException e) {
+            //메일 발송 불가
+            return AccountStatus.MAIL_SEND_FAIL;
         }
     }
 
@@ -87,7 +99,7 @@ public class AccountService {
             isExistDataInObject(selected);
 
             //이미지 경로 저장
-            selected.setSumnailImgPath(getFilePath(profileImg, account.getEmail()));
+            selected.setSumnailImgPath(fileUploadService.getFilePath(profileImg, account.getEmail()));
 
             // 수정된 정보 DB에 등록
             accountDao.update(account);
@@ -126,6 +138,8 @@ public class AccountService {
             // 객체 검사에서 걸린경우
             e.printStackTrace();
             return AccountStatus.NO_EMAIL;
+        } catch (FileNotFoundException | URISyntaxException e) {
+            return AccountStatus.MAIL_SEND_FAIL;
         }
     }
 
@@ -207,15 +221,8 @@ public class AccountService {
         return AccountStatus.DONE;
     }
 
-    private void sendMail(String msg, String code, String email) {
-
+    private void sendMail(String msg, String code, String email) throws FileNotFoundException, URISyntaxException {
+        mailService.sendMail(email, msg + code);
     }
 
-    private String getFilePath(File file, String email) throws IOException {
-        String rootPath = new File("").getCanonicalPath();
-        String savedPath = rootPath + "/profileImg/" + email + ".jpg";
-        File moveTo = new File(savedPath);
-        FileUtils.moveDirectoryToDirectory(file, moveTo, true);
-        return savedPath;
-    }
 }

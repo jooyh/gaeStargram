@@ -2,7 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="timeLineMapper">
+
     <insert id="insert">
         INSERT INTO timeline (fkAccount,content,sumnailImgPath,mainImgPath,likeCnt)
         VALUES (#{fkAccount},#{content},#{sumnailImgPath},#{mainImgPath},#{likeCnt})
@@ -13,23 +15,23 @@
     </update>
 
     <delete id="delete">
-        DELETE FROM account WHERE email=#{email}
+        DELETE FROM timeline WHERE fkAccount=#{fkAccount}
     </delete>
 
     <select id="getCount" resultType="int">
-        SELECT COUNT(userid) FROM account
+        SELECT COUNT(tid) FROM timeline
     </select>
 
     <select id="select" resultType="com.team.geaStargram.vo.Account">
-        SELECT * FROM account WHERE email=#{email}
+        SELECT * FROM timeline WHERE fkAccount=#{fkAccount}
     </select>
 
     <select id="selectAll" resultType="com.team.geaStargram.vo.Account">
-        SELECT * FROM account
+        SELECT * FROM timeline
     </select>
 
     <delete id="deleteAll">
-        DELETE FROM account
+        DELETE FROM timeline
     </delete>
 
 </mapper>
