@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="accountMapper">
+    <insert id="insert">
+        INSERT INTO account (email,password,birth,nickName,cnt)
+        VALUES (#{email},#{password},#{birth},#{nickName},#{cnt})
+    </insert>
+
+    <update id="update">
+        UPDATE account SET email=#{email}, password=#{password}, birth=#{birth}, nickName=#{nickName},cnt=#{cnt} WHERE email=#{email}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM account WHERE email=#{email}
+    </delete>
+
+    <select id="getCount" resultType="int">
+        SELECT COUNT(userid) FROM account
+    </select>
+
+    <select id="select" resultType="com.team.geaStargram.vo.Account">
+        SELECT * FROM account WHERE email=#{email}
+    </select>
+
+    <select id="selectAll" resultType="com.team.geaStargram.vo.Account">
+        SELECT * FROM account
+    </select>
+
+    <delete id="deleteAll">
+        DELETE FROM account
+    </delete>
+
+</mapper>
