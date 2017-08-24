@@ -1,169 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@localhost">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.3">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
     <root id="1"/>
-    <schema id="2" parent="1" name="BBS">
+    <schema id="2" parent="1" name="daomodule"/>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="spring"/>
+    <schema id="7" parent="1" name="sys"/>
+    <schema id="8" parent="1" name="toby"/>
+    <schema id="9" parent="1" name="account">
       <Current>1</Current>
     </schema>
-    <schema id="3" parent="1" name="book_ex"/>
-    <schema id="4" parent="1" name="daomodule"/>
-    <schema id="5" parent="1" name="dogs"/>
-    <schema id="6" parent="1" name="geaStargram">
+    <schema id="10" parent="1" name="exam_api"/>
+    <schema id="11" parent="1" name="geastargram">
       <Visible>1</Visible>
     </schema>
-    <schema id="7" parent="1" name="information_schema"/>
-    <schema id="8" parent="1" name="mysql"/>
-    <schema id="9" parent="1" name="performance_schema"/>
-    <schema id="10" parent="1" name="spring"/>
-    <schema id="11" parent="1" name="spring_exDB"/>
-    <schema id="12" parent="1" name="sys"/>
-    <schema id="13" parent="1" name="testdb"/>
-    <schema id="14" parent="1" name="tobby_test"/>
-    <schema id="15" parent="1" name="toby"/>
-    <schema id="16" parent="1" name="user"/>
-    <table id="17" parent="6" name="Account"/>
-    <table id="18" parent="6" name="TimeLine"/>
-    <table id="19" parent="6" name="comment"/>
-    <column id="20" parent="17" name="userid">
+    <schema id="12" parent="1" name="infdb"/>
+    <schema id="13" parent="1" name="spring_exdb"/>
+    <table id="14" parent="11" name="account"/>
+    <table id="15" parent="11" name="timeline"/>
+    <column id="16" parent="14" name="userid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="21" parent="17" name="email">
+    <column id="17" parent="14" name="email">
       <Position>2</Position>
-      <DataType>varchar(100)|0</DataType>
+      <DataType>varchar(500)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="22" parent="17" name="password">
+    <column id="18" parent="14" name="password">
       <Position>3</Position>
-      <DataType>varchar(100)|0</DataType>
+      <DataType>varchar(500)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="23" parent="17" name="birth">
+    <column id="19" parent="14" name="birth">
       <Position>4</Position>
       <DataType>varchar(100)|0</DataType>
-    </column>
-    <column id="24" parent="17" name="nickName">
-      <Position>5</Position>
-      <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="25" parent="17" name="cnt">
+    <column id="20" parent="14" name="nickname">
+      <Position>5</Position>
+      <DataType>varchar(500)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="14" name="cnt">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="26" parent="17" name="atholization">
+    <column id="22" parent="14" name="atholization">
       <Position>7</Position>
-      <DataType>tinyint(4)|0</DataType>
+      <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="27" parent="17" name="sumnailImgPath">
+    <column id="23" parent="14" name="sumnailImgPath">
       <Position>8</Position>
       <DataType>varchar(500)|0</DataType>
     </column>
-    <index id="28" parent="17" name="Account_email_uindex">
+    <index id="24" parent="14" name="Account_email_uindex">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="29" parent="17" name="Account_nickName_uindex">
-      <ColNames>nickName</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="30" parent="17" name="PRIMARY">
+    <key id="25" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userid</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="31" parent="17" name="Account_email_uindex">
+    <key id="26" parent="14" name="Account_email_uindex">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>Account_email_uindex</UnderlyingIndexName>
     </key>
-    <key id="32" parent="17" name="Account_nickName_uindex">
-      <ColNames>nickName</ColNames>
-      <UnderlyingIndexName>Account_nickName_uindex</UnderlyingIndexName>
-    </key>
-    <column id="33" parent="18" name="tid">
+    <column id="27" parent="15" name="tid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="34" parent="18" name="fkAccount">
+    <column id="28" parent="15" name="fkAccount">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="35" parent="18" name="content">
+    <column id="29" parent="15" name="content">
       <Position>3</Position>
       <DataType>varchar(500)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="36" parent="18" name="sumnailImgPath">
+    <column id="30" parent="15" name="sumnailImgPath">
       <Position>4</Position>
       <DataType>varchar(500)|0</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="37" parent="18" name="mainImgPath">
+    <column id="31" parent="15" name="mainImgPath">
       <Position>5</Position>
       <DataType>varchar(500)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="38" parent="18" name="likeCnt">
+    <column id="32" parent="15" name="likeCnt">
       <Position>6</Position>
       <DataType>int(11)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="39" parent="18" name="createDate">
+    <column id="33" parent="15" name="createDate">
       <Position>7</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <index id="40" parent="18" name="TimeLine_tid_uindex">
+    <index id="34" parent="15" name="timeline_tid_uindex">
       <ColNames>tid</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="41" parent="18" name="PRIMARY">
+    <key id="35" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>tid</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="42" parent="18" name="TimeLine_tid_uindex">
+    <key id="36" parent="15" name="timeline_tid_uindex">
       <ColNames>tid</ColNames>
-      <UnderlyingIndexName>TimeLine_tid_uindex</UnderlyingIndexName>
-    </key>
-    <column id="43" parent="19" name="cid">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="44" parent="19" name="fkAccount">
-      <Position>2</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="45" parent="19" name="fkTimeLine">
-      <Position>3</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="46" parent="19" name="content">
-      <Position>4</Position>
-      <DataType>varchar(500)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="47" parent="19" name="createDate">
-      <Position>5</Position>
-      <DataType>timestamp|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
-    </column>
-    <key id="48" parent="19" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>cid</ColNames>
-      <Primary>1</Primary>
+      <UnderlyingIndexName>timeline_tid_uindex</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

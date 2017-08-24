@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
 public class MailService {
 
     @Inject
-    private JavaMailSender mailSender; // xml에 등록한 bean autowired
+    private JavaMailSender mailSender;
 
     public void sendMail(String email, String text)
             throws FileNotFoundException, URISyntaxException {

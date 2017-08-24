@@ -16,5 +16,4 @@ public class FileUploadService {
         FileUtils.moveDirectoryToDirectory(file, moveTo, true);
         return savedPath;
     }
-
 }

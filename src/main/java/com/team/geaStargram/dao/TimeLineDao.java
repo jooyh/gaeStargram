@@ -1,6 +1,6 @@
 package com.team.geaStargram.dao;
 
-import com.team.geaStargram.vo.Account;
+import com.team.geaStargram.vo.TimeLine;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -12,27 +12,26 @@ public class TimeLineDao {
     @Inject
     private SqlSession session;
 
+    private static final String namespace = "timelineMapper";
 
-    private static final String namespace = "accountMapper";
-
-    public void Insert(Account account) {
-        session.insert(namespace + ".insert", account);
+    public void Insert(TimeLine timeLine) {
+        session.insert(namespace + ".insert", timeLine);
     }
 
-    public void update(Account account) {
-        session.update(namespace + ".update", account);
+    public void update(TimeLine timeLine) {
+        session.update(namespace + ".update", timeLine);
     }
 
-    public void delete(Account account) {
-        session.delete(namespace + ".delete", account);
+    public void delete(TimeLine timeLine) {
+        session.delete(namespace + ".delete", timeLine);
     }
 
-    public List<Account> selectAll() {
+    public List<TimeLine> selectAll() {
         return session.selectList(namespace + ".selectAll");
     }
 
-    public Account select(Account account) {
-        return session.selectOne(namespace + ".select", account);
+    public TimeLine select(TimeLine timeLine) {
+        return session.selectOne(namespace + ".select", timeLine);
     }
 
     public void deleteAll() {
@@ -42,6 +41,5 @@ public class TimeLineDao {
     public int getCount() {
         return session.selectOne(namespace + ".getCount");
     }
-
 
 }

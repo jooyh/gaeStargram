@@ -36,6 +36,10 @@ public class AccountDao {
         return session.selectOne(namespace + ".select", account);
     }
 
+    public Account selectWithNickName(Account account) {
+        return session.selectOne(namespace + ".select", account);
+    }
+
     public void deleteAll() {
         session.delete(namespace + ".deleteAll");
     }

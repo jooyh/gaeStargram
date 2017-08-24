@@ -26,6 +26,10 @@
         SELECT * FROM account WHERE email=#{email}
     </select>
 
+    <select id="selectWithNickName" resultType="com.team.geaStargram.vo.Account">
+        SELECT nickName FOR WHERE nickName = #{nickname}
+    </select>
+
     <select id="selectAll" resultType="com.team.geaStargram.vo.Account">
         SELECT * FROM account
     </select>

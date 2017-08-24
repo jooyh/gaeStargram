@@ -1,6 +1,7 @@
 package com.team.geaStargram.service;
 
 import com.team.geaStargram.dao.AccountDao;
+import com.team.geaStargram.exception.DuplicatedDataException;
 import com.team.geaStargram.exception.EmptyDataException;
 import com.team.geaStargram.exception.NotMacthedValueException;
 import com.team.geaStargram.exception.OverCountException;
@@ -161,9 +162,24 @@ public class AccountService {
         }
     }
 
+    public AccountStatus isDuplicatedEmail(String email) throws DuplicatedDataException {
+        Account account = makeObject(email, null, null, null);
+        if ((accountDao.select(account) == null) && (accountDao.selectWithNickName(account) == null))
+            return AccountStatus.DONE;
+        else return AccountStatus.DUPLICATED_EMAIL;
+    }
+
+    public Account makeObject(String email, String pw, String nickname, String birth) {
+        Account account = new Account();
+        account.setEmail(email);
+        account.setPassword(pw);
+        account.setNickName(nickname);
+        account.setBirth(birth);
+        return account;
+    }
+
 
     //    ================  private Method  ================================ *
-
 
     private void isExistDataInObject(Account account) {
         if (account.getEmail() == null || account.getEmail().equals(""))
