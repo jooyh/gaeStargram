@@ -9,6 +9,15 @@ public class Account {
     private String nickName;
     private int cnt;
     private boolean atholization;
+    private String sumnailImgPath;
+
+    public String getSumnailImgPath() {
+        return sumnailImgPath;
+    }
+
+    public void setSumnailImgPath(String sumnailImgPath) {
+        this.sumnailImgPath = sumnailImgPath;
+    }
 
     public int getUserid() {
         return userid;

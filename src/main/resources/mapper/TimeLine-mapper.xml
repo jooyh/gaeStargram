@@ -2,16 +2,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="accountMapper">
+<mapper namespace="timeLineMapper">
     <insert id="insert">
-        INSERT INTO account (email,password,birth,nickName,cnt,sumnailImgPath)
-        VALUES (#{email},#{password},#{birth},#{nickName},#{cnt},${sumnailImgPath})
+        INSERT INTO timeline (fkAccount,content,sumnailImgPath,mainImgPath,likeCnt)
+        VALUES (#{fkAccount},#{content},#{sumnailImgPath},#{mainImgPath},#{likeCnt})
     </insert>
 
     <update id="update">
-        UPDATE account SET
-         email=#{email}, password=#{password}, birth=#{birth}, nickName=#{nickName},cnt=#{cnt},sumnailImgPath=#{sumnailImgPath}
-         WHERE email=#{email}
+        UPDATE timeline SET mainImgPath=#{mainImgPath},content=#{content} WHERE email=#{email}
     </update>
 
     <delete id="delete">
